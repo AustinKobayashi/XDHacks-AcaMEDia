@@ -15,8 +15,9 @@
     "http-errors": "~1.6.2",
     "keyword-extractor": "0.0.15",
     "morgan": "~1.9.0",
+    "mysql": "latest",
     "pdf-to-text": "0.0.7",
     "pug": "2.0.0-beta11",
-    "mysql": "latest"
+    "xml2js": "^0.4.19"
   }
 }
