@@ -1,6 +1,5 @@
 runtime: python27
 threadsafe: true
-service: frontend
 
 handlers:
 - url: /
