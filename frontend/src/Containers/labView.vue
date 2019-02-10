@@ -6,7 +6,7 @@
             <p>Person Name: {{lab.person.name}}</p>
             <p style="padding-left: 5%">Person Email: {{lab.person.email}}</p>
             <div id="articleItem" v-for="article in lab.articles">
-                <p>Article Name: {{article.id}}</p>
+                <p>Article Name: {{article.title}}</p>
                 <p>Article Date {{article.date.toString()}}</p>
             </div>
         </div>
