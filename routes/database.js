@@ -19,7 +19,10 @@ router.post('/', function(req, res, next) {
     let query_term = req.body.query_term;
     let query_term_parts = query_term.split(" ");
     let query = query_term_parts.join("+");
-    DatabaseBuilder.query_pubmed(query);
+
+    let lab_id = parseInt(req.body.lab_id);
+
+    DatabaseBuilder.query_pubmed(query, lab_id);
     res.send(200);
 });
 

@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "async": "^2.6.1",
     "body-parser": "latest",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
@@ -18,6 +19,8 @@
     "mysql": "latest",
     "pdf-to-text": "0.0.7",
     "pug": "2.0.0-beta11",
+    "request": "^2.88.0",
+    "sync-each": "^1.0.1",
     "xml2js": "^0.4.19"
   }
 }
