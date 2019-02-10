@@ -41,12 +41,21 @@ module.exports = class QueryEngine {
 
             let labs = [];
             let articles = {};
-            let people = [];
+            let people = {};
             let counter = 0;
 
             function callback () {
-                console.log('all done');
-                resolve ({});
+                let data = [];
+                for(let i = 0; i < labs.length; i++) {
+                    data.push({
+                       name: labs[i].name,
+                       location: labs[i].location,
+                       url: labs[i].url,
+                       articles: articles[labs[i].name],
+                       person: people[labs[i].name]
+                    });
+                }
+                resolve (data);
             }
 
             console.log(keywords.length);
@@ -80,13 +89,12 @@ module.exports = class QueryEngine {
                             email: results[i].email
                         };
 
-                        // labs.indexOf(lab) === -1 ? labs.push(lab) : console.log("Lab already exists");
                         articles[lab.name] !== undefined ? articles[lab.name].push(article) : articles[lab.name] = [article];
-                        // people.indexOf(person) === -1 ? people.push(person) : console.log("Person already exists");
-                        // this.check_if_duplicate_lab(lab, labs) ? console.log("Lab already exists") : labs.push(lab);
 
-                        //labs.push(lab);
-                        //people.push(person);
+                        if(people[lab.name] === undefined)
+                            people[lab.name] = person;
+
+                        this.check_if_duplicate_lab(lab, labs) ? console.log("Lab already exists") : labs.push(lab);
                     }
                     counter++;
                     console.log(counter);
@@ -100,11 +108,19 @@ module.exports = class QueryEngine {
 
     static check_if_duplicate_lab (lab, labs) {
         for(let i = 0; i < labs.length; i++) {
-            if(lab[i].name === lab.name) {
+            if(labs[i].name === lab.name) {
                 return true;
             }
         }
+        return false;
+    }
 
+    static check_if_duplicate_person (person, people) {
+        for(let i = 0; i < people.length; i++) {
+            if(people[i].name === person.name) {
+                return true;
+            }
+        }
         return false;
     }
 };

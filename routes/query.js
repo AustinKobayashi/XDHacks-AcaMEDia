@@ -7,8 +7,8 @@ router.get('/', function(req, res, next) {
     // res.send('respond with a resource');
     QueryEngine.query('news, fabio, biology', 'Vancouver').then((results) => {
         console.log(results);
+        res.send(results);
     });
-    res.end();
 });
 
 module.exports = router;

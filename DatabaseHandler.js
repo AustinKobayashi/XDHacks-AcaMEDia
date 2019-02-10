@@ -1,9 +1,11 @@
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-    host: "localhost",
+    host: "104.198.97.44",
+    // socketPath: "/cloudsql/t-solstice-224300:us-west1:acamedia-db",
     user: "root",
-    password: ""
+    password: "yogi03",
+    database  : 'acamedia'
 });
 
 con.connect(function(err) {
@@ -11,10 +13,6 @@ con.connect(function(err) {
     console.log("Connected!");
 });
 
-con.query('use acamedia;', function (err, result) {
-    if (err) throw err;
-    console.log("Result: " + result);
-});
 
 class DatabaseHandler {
 
