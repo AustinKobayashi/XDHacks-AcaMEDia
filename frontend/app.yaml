@@ -4,10 +4,10 @@ service: frontend
 
 handlers:
 - url: /
-  static_files: www/index.html
-  upload: www/index.html
+  static_files: dist/index.html
+  upload: dist/index.html
 
 - url: /(.*)
-  static_files: www/\1
-  upload: www/(.*)
+  static_files: dist/\1
+  upload: dist/(.*)
 
