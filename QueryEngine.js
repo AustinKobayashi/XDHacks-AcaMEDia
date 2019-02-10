@@ -61,11 +61,12 @@ module.exports = class QueryEngine {
 
             keywords.forEach((keyword) => {
 
-                let query = "select * from keyword inner join article_keyword on " +
+                let query = "select article.title, article.publish_date, lab.lab_name, lab.location, lab.url, " +
+                    "person.name, person.email from keyword inner join article_keyword on " +
                     "keyword.id = article_keyword.keyword_id inner join article on " +
                     "article_keyword.article_id = article.id inner join lab_article on " +
                     "lab_article.article_id = article.id inner join lab on " +
-                    "lab.id = lab_article.article_id inner join lab_person on " +
+                    "lab.id = lab_article.lab_id inner join lab_person on " +
                     "lab_person.lab_id = lab.id inner join person on " +
                     "person.id = lab_person.person_id where word";
 
@@ -100,12 +101,25 @@ module.exports = class QueryEngine {
                             email: results[i].email
                         };
 
-                        articles[lab.name] !== undefined ? articles[lab.name].push(article) : articles[lab.name] = [article];
+
+                        if(articles[lab.name] !== undefined) {
+                            let articleExists = false;
+                            for(let j = 0; j < articles[lab.name].length; j++) {
+                                if (articles[lab.name][j].title === article.title)
+                                    articleExists = true;
+                            }
+                            if(!articleExists)
+                                articles[lab.name].push(article);
+                        } else {
+                            articles[lab.name] = [article];
+                        }
 
                         if(people[lab.name] === undefined)
                             people[lab.name] = person;
 
-                        this.check_if_duplicate_lab(lab, labs) ? console.log("Lab already exists") : labs.push(lab);
+                        // this.check_if_duplicate_lab(lab, labs) ? console.log("Lab already exists") : labs.push(lab);
+                        if(!this.check_if_duplicate_lab(lab, labs))
+                            labs.push(lab);
                     }
                     counter++;
                     console.log(counter);

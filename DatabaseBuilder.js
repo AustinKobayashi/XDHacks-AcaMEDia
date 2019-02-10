@@ -1,6 +1,8 @@
 var fs = require('fs');
+const https = require('https');
 var KeywordExtractor = require('./KeywordExtractor.js');
 var DatabaseHandler = require('./DatabaseHandler.js');
+var parseString = require('xml2js').parseString;
 
 
 class DatabaseBuilder {
@@ -209,9 +211,111 @@ class DatabaseBuilder {
     }
 
 
+    static query_pubmed (query_term) {
+        this.get_pubmed_ids(query_term).then((ids) => {
+            console.log(ids);
+            this.get_pubmed_article(ids[0]);
+        })
+    }
+
 
     static get_pubmed_ids(query_term) {
+        let query = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term=" + query_term;
+        return new Promise((resolve, reject) => {
+            https.get(query, (resp) => {
+                let data = '';
 
+                // A chunk of data has been recieved.
+                resp.on('data', (chunk) => {
+                    data += chunk;
+                });
+
+                // The whole response has been received. Print out the result.
+                resp.on('end', () => {
+                    parseString(data, function (err, result) {
+                        // console.dir(result);
+                        resolve(result.eSearchResult.IdList[0].Id);
+                    });
+                });
+
+            }).on("error", (err) => {
+                console.log("Error: " + err.message);
+            });
+        });
+    }
+
+
+    static get_pubmed_article(id) {
+        let query = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=" + id;
+        return new Promise((resolve, reject) => {
+            https.get(query, (resp) => {
+                let data = '';
+
+                // A chunk of data has been recieved.
+                resp.on('data', (chunk) => {
+                    data += chunk;
+                });
+
+                // The whole response has been received. Print out the result.
+                resp.on('end', () => {
+                    parseString(data, (err, result) => {
+                        // console.dir(result);
+                        let title = result['pmc-articleset'].article[0].front[0]['article-meta'][0]['title-group'][0]['article-title'][0];
+
+                        let day;
+                        let month;
+                        let year;
+
+                        try {
+                            day = result['pmc-articleset'].article[0].front[0]['article-meta'][0]['pub-date'][0].day[0];
+                        } catch (e) {
+                            console.warn("Cant parse day");
+                        }
+
+                        try {
+                            month = result['pmc-articleset'].article[0].front[0]['article-meta'][0]['pub-date'][0].month[0];
+                        } catch (e) {
+                            console.warn("Cant parse month");
+                        }
+
+                        try {
+                            year = result['pmc-articleset'].article[0].front[0]['article-meta'][0]['pub-date'][0].year[0];
+                        } catch (e) {
+                            console.warn("Cant parse year");
+                        }
+
+                        let date = new Date(year, month, day);
+
+                        this.get_article_abstract (result['pmc-articleset'].article[0].front[0]['article-meta'][0].abstract[0].sec).then((article_text) => {
+                            console.log(article_text);
+                        });
+                    });
+                });
+
+            }).on("error", (err) => {
+                console.log("Error: " + err.message);
+            });
+        });
+    }
+
+
+
+    static get_article_abstract (article_json) {
+        return new Promise ((resolve, reject) => {
+            let article_text = "";
+            let counter = 0;
+
+            function callback () {
+                resolve(article_text);
+            }
+
+            article_json.forEach((article) => {
+                article_text += " " + article.p[0];
+                counter++;
+                if(counter === article_json.length)
+                    callback();
+            });
+        });
     }
 }
 
