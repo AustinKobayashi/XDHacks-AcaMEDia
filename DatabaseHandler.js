@@ -1,8 +1,8 @@
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-    host: "104.198.97.44",
-    //socketPath: "/cloudsql/t-solstice-224300:us-west1:acamedia-db",
+    //host: "104.198.97.44",
+    socketPath: "/cloudsql/t-solstice-224300:us-west1:acamedia-db",
     user: "root",
     password: "yogi03",
     database  : 'acamedia'
