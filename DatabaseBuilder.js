@@ -231,7 +231,7 @@ class DatabaseBuilder {
                         if(id) {
                             this.get_pubmed_article(id).then((data) => {
                                 let add_article_query = "insert ignore into article (title, publish_date) values (" +
-                                    "\'" + data.article.title + "\', " + data.article.date.toJSON().slice(0, 10) + ");";
+                                    "\'" + data.article.title + "\', " + "\'" + data.article.date.toJSON().slice(0, 10) + "\'" + ");";
                                 DatabaseHandler.query_db(add_article_query, () => {
                                 });
 

@@ -2,13 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f311fcfa-26c8-4a62-8f60-78a53b15b3f5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/.gcloudignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DatabaseBuilder.js" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseBuilder.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DatabaseHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/app.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/app.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/Containers/labView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Containers/labView.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/labItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/labItem.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/acamedia-8am.sql" beforeDir="false" afterPath="$PROJECT_DIR$/acamedia-8am.sql" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,8 +22,8 @@
       <file leaf-file-name="DatabaseBuilder.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DatabaseBuilder.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66">
-              <caret line="317" column="75" selection-start-line="317" selection-start-column="75" selection-end-line="317" selection-end-column="75" />
+            <state relative-caret-position="164">
+              <caret line="233" column="129" selection-start-line="233" selection-start-column="129" selection-end-line="233" selection-end-column="129" />
             </state>
           </provider>
         </entry>
@@ -70,8 +67,8 @@
       <file leaf-file-name="DatabaseHandler.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DatabaseHandler.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
+            <state relative-caret-position="75">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -228,12 +225,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1549753604841</updated>
-      <workItem from="1549753605942" duration="43644000" />
+      <workItem from="1549753605942" duration="46359000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43644000" />
+    <option name="totallyTimeSpent" value="46359000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="187" y="23" width="1212" height="819" extended-state="0" />
@@ -244,7 +241,7 @@
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" sideWeight="0.50247526" side_tool="true" weight="0.4" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32885906" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49917492" weight="0.67114097" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49917492" visible="true" weight="0.67114097" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info id="npm" side_tool="true" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -302,12 +299,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/DatabaseBuilder.js</url>
-          <line>320</line>
+          <line>319</line>
           <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="193" />
+          <option name="timeStamp" value="197" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/DatabaseBuilder.js</url>
+          <line>329</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="198" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="196" />
+      <option name="time" value="200" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -410,15 +413,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DatabaseBuilder.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="317" column="75" selection-start-line="317" selection-start-column="75" selection-end-line="317" selection-end-column="75" />
+        <state relative-caret-position="164">
+          <caret line="233" column="129" selection-start-line="233" selection-start-column="129" selection-end-line="233" selection-end-column="129" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DatabaseHandler.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
+        <state relative-caret-position="75">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
         </state>
       </provider>
     </entry>
