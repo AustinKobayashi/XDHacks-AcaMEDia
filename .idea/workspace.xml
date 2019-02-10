@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f311fcfa-26c8-4a62-8f60-78a53b15b3f5" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseBuilder.js" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseBuilder.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/.gcloudignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DatabaseHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/database.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/database.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/database.pug" beforeDir="false" afterPath="$PROJECT_DIR$/views/database.pug" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/app.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/app.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/app.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/Containers/labView.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/Containers/labView.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/labItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/labItem.vue" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,10 +22,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DatabaseBuilder.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DatabaseBuilder.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DatabaseBuilder.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
+            <state relative-caret-position="66">
               <caret line="317" column="75" selection-start-line="317" selection-start-column="75" selection-end-line="317" selection-end-column="75" />
             </state>
           </provider>
@@ -67,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DatabaseHandler.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DatabaseHandler.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DatabaseHandler.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
+            <state relative-caret-position="435">
+              <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -138,8 +138,8 @@
         <option value="$PROJECT_DIR$/QueryEngine.js" />
         <option value="$PROJECT_DIR$/views/database.pug" />
         <option value="$PROJECT_DIR$/routes/database.js" />
-        <option value="$PROJECT_DIR$/DatabaseHandler.js" />
         <option value="$PROJECT_DIR$/DatabaseBuilder.js" />
+        <option value="$PROJECT_DIR$/DatabaseHandler.js" />
       </list>
     </option>
   </component>
@@ -228,12 +228,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1549753604841</updated>
-      <workItem from="1549753605942" duration="43349000" />
+      <workItem from="1549753605942" duration="43644000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="43349000" />
+    <option name="totallyTimeSpent" value="43644000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="187" y="23" width="1212" height="819" extended-state="0" />
@@ -401,13 +401,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DatabaseHandler.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/KeywordExtractor.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
@@ -417,8 +410,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DatabaseBuilder.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
+        <state relative-caret-position="66">
           <caret line="317" column="75" selection-start-line="317" selection-start-column="75" selection-end-line="317" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DatabaseHandler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
         </state>
       </provider>
     </entry>

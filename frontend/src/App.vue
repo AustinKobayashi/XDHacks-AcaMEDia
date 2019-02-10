@@ -55,7 +55,7 @@
         const cutQuery = query.split(" ").join(",");
         axios.get(queryURL, {
           params: {
-            terms: cutQuery,
+            term: cutQuery,
             location: location
           }
         }).then((response) => {

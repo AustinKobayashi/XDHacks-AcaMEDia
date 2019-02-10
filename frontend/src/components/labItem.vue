@@ -4,7 +4,7 @@
             <h2 style="color: blue" v-on:click="goToLabPage">{{lab.name}}</h2>
             <p>Lab Location: {{lab.location}}</p>
             <div id="articleItem" v-for="article in shortenedArticleList">
-                <p>Article Name: {{article.id}}</p>
+                <p>Article Name: {{article.title}}</p>
                 <p>Article Date {{article.date.toString()}}</p>
             </div>
         </div>

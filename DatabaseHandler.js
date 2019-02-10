@@ -2,11 +2,9 @@ var mysql = require('mysql');
 
 var con = mysql.createConnection({
     //host: "104.198.97.44",
-    //socketPath: "/cloudsql/t-solstice-224300:us-west1:acamedia-db",
-    host: "localhost",
+    socketPath: "/cloudsql/t-solstice-224300:us-west1:acamedia-db",
     user: "root",
-    //password: "yogi03",
-    password: "",
+    password: "yogi03",
     database  : 'acamedia'
 });
 
@@ -26,19 +24,6 @@ class DatabaseHandler {
             }
             return callback(result);
         });
-    }
-
-    static async_query (query) {
-        return new Promise((resolve, reject) => {
-            con.query(query, function (err, result) {
-                if (err){
-                    console.warn(query);
-                    reject(err);
-                    throw err;
-                }
-                resolve(result);
-            });
-        })
     }
 }
 
