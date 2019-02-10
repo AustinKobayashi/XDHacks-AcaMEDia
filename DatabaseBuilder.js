@@ -3,9 +3,17 @@ const https = require('https');
 var KeywordExtractor = require('./KeywordExtractor.js');
 var DatabaseHandler = require('./DatabaseHandler.js');
 var parseString = require('xml2js').parseString;
+var request = require('request');
+var async = require("async");
 
 
 class DatabaseBuilder {
+
+    static sleep(ms){
+        return new Promise(resolve => {
+            setTimeout(resolve,ms)
+        })
+    }
 
     static get_articles () {
         let articles = [];
@@ -167,9 +175,7 @@ class DatabaseBuilder {
                 article.title + "\'" + "," +
                 "\'" + date + "\'" + ")";
 
-            con.query(add_article_query, function (err, result) {
-                if (err) throw err;
-            });
+            DatabaseHandler.query_db(add_article_query, () => {});
 
             let get_article_id_query = "select id from article where title = '" + article.title + "';";
 
@@ -211,42 +217,63 @@ class DatabaseBuilder {
     }
 
 
-    static query_pubmed (query_term) {
+    static query_pubmed (query_term, lab_id) {
+        let id_counter = 0;
+
+        function callback () {
+            console.log("Done!!!!");
+        }
+
         this.get_pubmed_ids(query_term).then((ids) => {
-            console.log(ids);
-            this.get_pubmed_article(ids[0]);
-        })
-    }
+            async.eachSeries(ids, (id, done) => {
+                setTimeout(() => {
+                        console.log(id);
+                        if(id) {
+                            this.get_pubmed_article(id).then((data) => {
+                                let add_article_query = "insert ignore into article (title, publish_date) values (" +
+                                    "\'" + data.article.title + "\', " + "\'" + data.article.date.toJSON().slice(0, 10) + "\'" + ");";
+                                DatabaseHandler.query_db(add_article_query, () => {
+                                });
+
+                                let get_article_id_query = "select id from article where title = " + "\'" + data.article.title + "\';";
+                                DatabaseHandler.query_db(get_article_id_query, (results) => {
+                                    let article_id = results[0].id;
+                                    let add_lab_article = 'insert ignore into lab_article (lab_id, article_id) values (' + lab_id + ',' + article_id + ');';
+                                    DatabaseHandler.query_db(add_lab_article, () => {
+                                        console.log("Added lab article");
+                                    });
+                                });
 
 
-    static get_pubmed_ids(query_term) {
-        let query = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pmc&term=" + query_term;
-        return new Promise((resolve, reject) => {
-            https.get(query, (resp) => {
-                let data = '';
+                                data.keywords.forEach((keyword) => {
+                                    let add_keyword_query = "insert ignore into keyword (word) values (" + "\'" + keyword + "\');";
+                                    DatabaseHandler.query_db(add_keyword_query, () => {
+                                        let get_keyword_id_query = "select id from keyword where word = '" + keyword + "\';";
+                                        DatabaseHandler.query_db(get_keyword_id_query, (results) => {
+                                            let keyword_id = results[0].id;
 
-                // A chunk of data has been recieved.
-                resp.on('data', (chunk) => {
-                    data += chunk;
-                });
-
-                // The whole response has been received. Print out the result.
-                resp.on('end', () => {
-                    parseString(data, function (err, result) {
-                        // console.dir(result);
-                        resolve(result.eSearchResult.IdList[0].Id);
-                    });
-                });
-
-            }).on("error", (err) => {
-                console.log("Error: " + err.message);
+                                            let get_article_id_query = "select id from article where title = " + "\'" + data.article.title + "\';";
+                                            DatabaseHandler.query_db(get_article_id_query, (results) => {
+                                                let article_id = results[0].id;
+                                                let add_article_keyword_query = 'insert ignore into article_keyword (article_id, keyword_id) values (' + article_id + ',' + keyword_id + ');';
+                                                DatabaseHandler.query_db(add_article_keyword_query, () => {});
+                                            });
+                                        })
+                                    });
+                                });
+                            });
+                        }
+                        done();
+                    }, 3000);
+                }, function (test) {
+                console.log(test);
             });
         });
     }
 
 
-    static get_pubmed_article(id) {
-        let query = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=" + id;
+    static get_pubmed_ids(query_term) {
+        let query = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&term=" + query_term + "&api_key=bcca0f4e17fbc99b5040457f23f2a9056a08";
         return new Promise((resolve, reject) => {
             https.get(query, (resp) => {
                 let data = '';
@@ -260,35 +287,7 @@ class DatabaseBuilder {
                 resp.on('end', () => {
                     parseString(data, (err, result) => {
                         // console.dir(result);
-                        let title = result['pmc-articleset'].article[0].front[0]['article-meta'][0]['title-group'][0]['article-title'][0];
-
-                        let day;
-                        let month;
-                        let year;
-
-                        try {
-                            day = result['pmc-articleset'].article[0].front[0]['article-meta'][0]['pub-date'][0].day[0];
-                        } catch (e) {
-                            console.warn("Cant parse day");
-                        }
-
-                        try {
-                            month = result['pmc-articleset'].article[0].front[0]['article-meta'][0]['pub-date'][0].month[0];
-                        } catch (e) {
-                            console.warn("Cant parse month");
-                        }
-
-                        try {
-                            year = result['pmc-articleset'].article[0].front[0]['article-meta'][0]['pub-date'][0].year[0];
-                        } catch (e) {
-                            console.warn("Cant parse year");
-                        }
-
-                        let date = new Date(year, month, day);
-
-                        this.get_article_abstract (result['pmc-articleset'].article[0].front[0]['article-meta'][0].abstract[0].sec).then((article_text) => {
-                            console.log(article_text);
-                        });
+                        resolve(result.eSearchResult.IdList[0].Id);
                     });
                 });
 
@@ -299,21 +298,39 @@ class DatabaseBuilder {
     }
 
 
+    static get_pubmed_article(id) {
+        let query = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pubmed&retmode=json&rettype=abstract&id=" + id + "&api_key=bcca0f4e17fbc99b5040457f23f2a9056a08";
+        return new Promise((resolve, reject) => {
 
-    static get_article_abstract (article_json) {
-        return new Promise ((resolve, reject) => {
-            let article_text = "";
-            let counter = 0;
+            this.sleep(2000).then(() => {
+                request(query, (error, response, body) => {
+                    console.log(id);
+                    let title = "";
+                    let date;
 
-            function callback () {
-                resolve(article_text);
-            }
+                    try {
+                        let article_json = JSON.parse(body);
+                        title = article_json.result[id].title.replace(/[.,\\\/#!$%\'\"\^&\*;:{}=\-_`~()]/g,"");
+                        date = new Date(article_json.result[id].epubdate);
+                    } catch (e) {
+                        reject("I hate js");
+                    }
+                    let abstract_query = "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=text&rettype=abstract&id=" + id + "&api_key=bcca0f4e17fbc99b5040457f23f2a9056a08";
 
-            article_json.forEach((article) => {
-                article_text += " " + article.p[0];
-                counter++;
-                if(counter === article_json.length)
-                    callback();
+                    request(abstract_query, (error, response, body) => {
+                        KeywordExtractor.get_keywords_from_text(body).then((keywords) => {
+                            let data = {
+                                article: {
+                                    title: title,
+                                    date: date
+                                },
+                                keywords: keywords
+                            };
+
+                            resolve(data);
+                        });
+                    });
+                });
             });
         });
     }
