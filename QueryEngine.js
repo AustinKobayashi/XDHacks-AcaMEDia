@@ -33,7 +33,6 @@ module.exports = class QueryEngine {
 
 
 
-
     static query (keyword_string, location) {
 
         return new Promise ((resolve, reject) => {
@@ -68,7 +67,19 @@ module.exports = class QueryEngine {
                     "lab_article.article_id = article.id inner join lab on " +
                     "lab.id = lab_article.article_id inner join lab_person on " +
                     "lab_person.lab_id = lab.id inner join person on " +
-                    "person.id = lab_person.person_id where word = " + "\'" + keyword + "\'" + ";";
+                    "person.id = lab_person.person_id where word";
+
+                if(keyword_string !== "") {
+                    query += " = " + "\'" + keyword + "\'";
+                } else {
+                    query += " like \'%%\'";
+                }
+
+                if (location !== "") {
+                    query += " and location like \'%" + location + "%\';"
+                } else {
+                    query += ";";
+                }
 
                 DatabaseHandler.query_db(query, (results) => {
 

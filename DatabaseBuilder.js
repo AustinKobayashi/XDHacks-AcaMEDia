@@ -207,6 +207,12 @@ class DatabaseBuilder {
             });
         });
     }
+
+
+
+    static get_pubmed_ids(query_term) {
+
+    }
 }
 
 module.exports = DatabaseBuilder;
