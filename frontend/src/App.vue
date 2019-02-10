@@ -13,7 +13,7 @@
   import Results from "./Containers/Results"
   import labView from "./Containers/labView"
   import axios from 'axios';
-  const queryURL = "https://t-solstice-224300.appspot.com/query";
+  const queryURL = "https://backend-dot-t-solstice-224300.appspot.com/query";
   const scroller = {
     methods: {
       switchPage: function (className) {
@@ -51,26 +51,30 @@
     },
     methods: {
       getArticleData: function (query, location) {
-        console.log("called")
         const cutQuery = query.split(" ").join(",");
+        const cutLocation = location && location !== "" ? location : "";
         axios.get(queryURL, {
           params: {
             term: cutQuery,
-            location: location
+            location: cutLocation
           }
         }).then((response) => {
-          console.log("gottem");
-          console.log(response);
           this.queryResponse = response.data;
           this.currentComponent = "Results"
         }).catch(function (error) {
-          console.log("error..")
           console.error(error);
         })
       },
       openLabView: function (lab) {
         this.selectedLab = lab;
         this.currentComponent = "labView"
+      },
+      returnToSearch: function () {
+          this.selectedLab = null;
+          this.currentComponent = "Results"
+      },
+      returnToHome: function () {
+        this.currentComponent = "Home"
       }
     },
     computed: {
@@ -82,11 +86,13 @@
         }else if (this.currentComponent === "labView"){
           return {
             lab: this.selectedLab,
+            back: this.returnToSearch
           }
         }else{
           return {
             queryResponse: this.queryResponse,
-            switchLabView: this.openLabView
+            switchLabView: this.openLabView,
+            back: this.returnToHome
           }
         }
       }
@@ -99,7 +105,10 @@
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  margin-top: 60px;
+  background-color: #d8e5f8;
+  height: 100%;
 }
+  html {
+    background-color: #d8e5f8;
+  }
 </style>

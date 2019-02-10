@@ -1,11 +1,12 @@
 <template>
     <div id="labItem">
         <div id="data">
-            <h2 style="color: blue" v-on:click="goToLabPage">{{lab.name}}</h2>
-            <p>Lab Location: {{lab.location}}</p>
+            <h2 style="color: #4886ca; font-family: Marion, 'Times New Roman', Serif; font-weight: bold; ">{{lab.name}}</h2>
+            <button type="button" class="btn btn-light" v-on:click="goToLabPage">Go to Lab Profile</button>
+            <p>{{lab.location}}</p>
             <div id="articleItem" v-for="article in shortenedArticleList">
                 <p>Article Name: {{article.title}}</p>
-                <p>Article Date {{article.date.toString()}}</p>
+                <p>Article Date: {{formatDate(article.date)}}</p>
             </div>
         </div>
     </div>
@@ -17,6 +18,9 @@
         methods: {
             goToLabPage: function () {
                 this.goToLabView(this.lab)
+            },
+            formatDate: function (date) {
+                    return date.slice(0, 10);
             }
         },
         computed: {
@@ -29,19 +33,20 @@
 
 <style scoped>
     #data{
-        border: 2px solid black;
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         border-radius: 5px;
         padding-left: 5%;
+        padding-right: 5%;
         margin-bottom:5%;
     }
     #articleItem{
-        border: 2px solid red;
+        background-color: #c2c4c6;
+        margin: 5px;
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         border-radius: 5px;
-        padding-left: 5%;
+        padding-left: 3%;
     }
 
 </style>

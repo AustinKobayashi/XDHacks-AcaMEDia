@@ -1,10 +1,11 @@
 <template>
     <div id="locationBar">
-        <label for="select">Location filter: </label>
+        <label style="padding-right: 5%; font-size: 25px; text-align: center" for="select">Location filter: </label>
         <select id="select"
+                class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                 v-bind:value="locationSelection"
                 v-on:input="$emit('updateOptions', $event.target.value)">
-            <option disabled value="">Please select one</option>
+            <option value="">(optional)</option>
             <option v-for="option in locationOptions" v-bind:value="option">
                 {{option}}
             </option>
@@ -24,7 +25,7 @@
         },
         methods: {
             populateLocationOptions: function () {
-                axios.get("https://t-solstice-224300.appspot.com/location")
+                axios.get("https://backend-dot-t-solstice-224300.appspot.com/location")
                     .then((response) =>{
                         this.locationOptions = {...response.data};
                     }).catch(function (Error) {
