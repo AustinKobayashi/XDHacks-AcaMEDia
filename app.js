@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var keywordRouter = require('./routes/keyword');
 var databaseRouter = require('./routes/database');
 var locationRouter = require('./routes/location');
+var queryRouter = require('./routes/query');
 
 var bodyParser = require('body-parser'); //connects bodyParsing middleware
 
@@ -29,6 +30,7 @@ app.use('/users', usersRouter);
 app.use('/keyword', keywordRouter);
 app.use('/database', databaseRouter);
 app.use('/location', locationRouter);
+app.use('/query', queryRouter);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
