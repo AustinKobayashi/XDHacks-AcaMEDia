@@ -1,6 +1,8 @@
 
 # aca-med-ia
 
+**project website:** https://aca-med-ia.com
+
 acaMEDia is a vue.js-based webapp geared towards undergraduate and graduate Science students looking to gain more knowledge about current medical research papers and the flourishing scientific laboratories conducting the research. The world of scientific academia can be daunting to traverse, with many laboratories around the world and individual laboratory websites to explore.
 
 Whether it's an undergraduate student looking to kickstart their lifelong passion in a scientific specialization or it's a graduate student looking to contribute towards a lab with publications that align to their interests, we are confident that acaMEDia can help bridge the gap and bring more young minds in contact with medical research.
