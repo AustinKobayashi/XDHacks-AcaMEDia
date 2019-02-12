@@ -16,7 +16,7 @@ var mysql = require('mysql');
 var pool = mysql.createPool({
     connectionLimit : 100, //important
     //host     : '127.0.0.1',
-    
+    socketPath: "/cloudsql/t-solstice-224300:us-west1:acamedia-db",
     user     : 'root',
     password : 'yogi03',
     database : 'acamedia',
