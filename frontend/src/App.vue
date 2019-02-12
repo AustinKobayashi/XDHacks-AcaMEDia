@@ -13,7 +13,7 @@
   import Results from "./Containers/Results"
   import labView from "./Containers/labView"
   import axios from 'axios';
-  const queryURL = "https://backend-dot-t-solstice-224300.appspot.com/query";
+  const queryURL = "https://us-central1-t-solstice-224300.cloudfunctions.net/Query";
   const scroller = {
     methods: {
       switchPage: function (className) {

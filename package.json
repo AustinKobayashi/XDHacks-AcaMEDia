@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@google-cloud/storage": "^2.4.2",
     "async": "^2.6.1",
     "body-parser": "latest",
     "cookie-parser": "~1.4.3",
