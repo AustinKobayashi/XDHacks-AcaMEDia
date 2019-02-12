@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f311fcfa-26c8-4a62-8f60-78a53b15b3f5" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/CloudDatabaseBuilder.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+    <list default="true" id="f311fcfa-26c8-4a62-8f60-78a53b15b3f5" name="Default" comment="Add cloud functions for database querying">
+      <change beforePath="$PROJECT_DIR$/CloudDatabaseBuilder.js" beforeDir="false" afterPath="$PROJECT_DIR$/CloudDatabaseBuilder.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -74,11 +72,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/CloudDatabaseBuilder.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="227" column="48" lean-forward="true" selection-start-line="227" selection-start-column="48" selection-end-line="227" selection-end-column="48" />
+            <state relative-caret-position="456">
+              <caret line="229" column="15" lean-forward="true" selection-start-line="229" selection-start-column="15" selection-end-line="229" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -101,11 +99,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="336">
-              <caret line="39" selection-start-line="39" selection-end-line="39" />
+            <state relative-caret-position="232">
+              <caret line="32" column="22" lean-forward="true" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -159,8 +157,8 @@
         <option value="$PROJECT_DIR$/routes/location.js" />
         <option value="$PROJECT_DIR$/frontend/src/App.vue" />
         <option value="$PROJECT_DIR$/frontend/src/components/locationBar.vue" />
-        <option value="$PROJECT_DIR$/CloudDatabaseBuilder.js" />
         <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/CloudDatabaseBuilder.js" />
       </list>
     </option>
   </component>
@@ -263,12 +261,20 @@
       <workItem from="1549753605942" duration="46359000" />
       <workItem from="1549912194633" duration="76000" />
       <workItem from="1549939176867" duration="1698000" />
-      <workItem from="1549942856474" duration="3255000" />
+      <workItem from="1549942856474" duration="3479000" />
     </task>
+    <task id="LOCAL-00001" summary="Add cloud functions for database querying">
+      <created>1549946287633</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1549946287633</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51388000" />
+    <option name="totallyTimeSpent" value="51612000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="124" y="14" width="1532" height="848" extended-state="0" />
@@ -316,6 +322,10 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add cloud functions for database querying" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add cloud functions for database querying" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/routes/users.js">
@@ -448,17 +458,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/CloudDatabaseBuilder.js">
+    <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="227" column="48" lean-forward="true" selection-start-line="227" selection-start-column="48" selection-end-line="227" selection-end-column="48" />
+        <state relative-caret-position="232">
+          <caret line="32" column="22" lean-forward="true" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
+    <entry file="file://$PROJECT_DIR$/CloudDatabaseBuilder.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
+        <state relative-caret-position="456">
+          <caret line="229" column="15" lean-forward="true" selection-start-line="229" selection-start-column="15" selection-end-line="229" selection-end-column="15" />
         </state>
       </provider>
     </entry>

@@ -218,7 +218,7 @@ class DatabaseBuilder {
 
 
     static query_pubmed (query_term, lab_id, callback) {
-        const baseUrl = "";
+        const baseUrl = "https://us-central1-t-solstice-224300.cloudfunctions.net/InsertPubmedArticles";
         this.get_pubmed_ids(query_term).then((ids) => {
             callback(true);
             ids.forEach((id) => {
