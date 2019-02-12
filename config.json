@@ -1,0 +1,7 @@
+{
+  "GCLOUD_PROJECT": "t-solstice-224300",
+  "DATA_BACKEND": "cloudsql",
+  "MYSQL_USER": "root",
+  "MYSQL_PASSWORD": "yogi03",
+  "INSTANCE_CONNECTION_NAME": "acamedia-db"
+}

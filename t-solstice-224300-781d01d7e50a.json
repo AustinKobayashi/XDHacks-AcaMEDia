@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "t-solstice-224300",
+  "private_key_id": "781d01d7e50a7d08b15e20506ded4c52e7810afb",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDnPgCZOkl8vy+s\n6zpEQq3KP4M0Z6v5AztxtMlefkMEUiECa7ZA/UyxYBy2kWLQwDXUjyvxAZ8pk9OD\nCAOi6btiFOPBqS8soqTR40Z8kjuLVcwjC+dsCmRk28LuT19NgPGp1YkM1mc5BbNi\nv2gEUg1J7N7SmgdttNmCWPzWf34jF+DRzJvgmr/LK9RSgSfFUzc05qy4F7wbDgMm\nxDqXrB84q8e+cNAMBF/tFQT1mj4myyYa0lwoTTlqHR077iVUG0NkbSV/zncPJtru\nj01hdDww0ucod+ja9j9vl+LwHS882MCVBmvNcZN6X//JT0TTmCt8xPsQEuY8phrz\nSQMCxAHhAgMBAAECggEAZPglusJApD+2yYJMhtG2oMDqwU8jQC+xHQ0bgC8RhCl4\nUF5HzkjL3AdjgjQpOY0z9AQv46QZo0Xw7R3quI/mSgVlDYKaHptF7H+Yn3wak9R6\ntjLUcdB31bI/g18U9fp/ivC6TuivWa6rjUqWWIybUNQk10B6TeTRtKC2hdJVeWx3\nIdnWS4dcW1eHXBJimhDirgik5O3zvo/CNwp9KR9pNb9fSjXyrEuI979rtmsUDyTA\nwZYou+npHUCC4PsZr2/PqNg0I5VWeOL7QbMLu+e5A/zlwWkPyXFKFL1yqrJhY/K0\nZHNP5LmokDvpODqeRvjXNQZNqHlRse6g3zuGqGknIQKBgQD69kxRVNKdpvR7IuQr\nDsKgdD8/RIp8Ea/l23DrOUC5aTl5orlBeyiHkYN/xJ9WO9wfffYTUiauw69ctVSD\n5+YprEyWFA+CG0y2+9u3W63Jme9wOXvWDIJ8Pj8Ghc9SHk33uQCyqgAYGVZ1O1eE\nLhHAqoBzy9TdFB/1Acg/e+LchwKBgQDr4lzvZDm2nyLIupVXWbWea4eNrchuX1yI\ncVuTCkkqyrfAvyHdILopM1fyyCSt/8C41THJtmwPobDPeGBHy+GER1YxIajS5uKe\nt6w8yUTdaGNFIxjVTozHpcsEkFVXhCHvFaM0zug89FtCYGp9bf70ZROfigfW0RCJ\nTKRH0lBwVwKBgGbg5PRKY3TBZmO8L/D+wgZo4SycenDWB1ehF6817zSS0D7u2Cbh\nyAGbQ17zSaZeL6SxTFkrSjRGf/LvWtAgFphqy5KScrERY+d3Y+DMsnd8pU1KI1vi\nEPPByLBx1kWBqtCshH65dgRrDqhMRVooUJq8yp+tpXtjrp4PtvlfXeatAoGBANLN\n/LIwhudvNn3fSaHD2WzXuk/itBH3hVGmxOkWsybb/fXymkftfJFfgkTFmwopW0mT\ntigHsHET1ljDwn/HdCZsPlowM5kvn+2qRfIZCUM5jCX4ZLQUu/mccGAGwU4yFsV9\nN9r04lW/J2OdmO25hLVTM4NLrw/KzRV2+gX5rcuHAoGBAPGyxgv39EpPGShTC6uP\nQqZZIqM8+OUt9FZrGfBYKyRpWX9SBd/WBw4U/9qiJigcAbu2Ek3sFBe2GDGWWGCE\n/+f24ElXJoxr7DoON9wFROT3WDaCtCs7+1SUyCUVfAEOr5vK50U58/wNo5QbL5RL\nJ6HSgHKZeuDm9MiKioOpnkzs\n-----END PRIVATE KEY-----\n",
+  "client_email": "austin@t-solstice-224300.iam.gserviceaccount.com",
+  "client_id": "105491978106771220905",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/austin%40t-solstice-224300.iam.gserviceaccount.com"
+}
