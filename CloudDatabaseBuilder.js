@@ -225,7 +225,7 @@ class DatabaseBuilder {
                 let queryURL = baseUrl + "?id=" + id + "?labId=" + lab_id;
                 console.log(id);
                 https.get(queryURL, (res ) => {
-                    console.log(res.statusCode);
+                    console.log("Answer from article query: " + res.statusCode);
                 })
             });
         }, (e) => {
