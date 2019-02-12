@@ -24,11 +24,8 @@ exports.Query = (req, res) => {
 };
 
 exports.QueryPubmed = (req, res) => {
-    let query_term = req.body.query_term;
-    let query_term_parts = query_term.split(" ");
-    let query = query_term_parts.join("+");
-
-    let lab_id = parseInt(req.body.lab_id);
+    const query = req.query.term;
+    const lab_id = parseInt(req.query.lab_id);
 
     DatabaseBuilder.query_pubmed(query, lab_id, (result) => {
         if (result){

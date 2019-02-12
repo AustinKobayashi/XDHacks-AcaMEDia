@@ -332,8 +332,6 @@ class DatabaseBuilder {
                     });
                 });
             });
-        }, (data) => {
-
         });
     }
 }
