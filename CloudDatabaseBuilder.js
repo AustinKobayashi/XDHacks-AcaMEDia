@@ -220,7 +220,6 @@ class DatabaseBuilder {
     static query_pubmed (query_term, lab_id, callback) {
         const baseUrl = "https://us-central1-t-solstice-224300.cloudfunctions.net/InsertPubmedArticles";
         this.get_pubmed_ids(query_term).then((ids) => {
-            callback(true);
             ids.forEach((id) => {
                 let queryURL = baseUrl + "?id=" + id + "?labId=" + lab_id;
                 console.log(id);
@@ -228,6 +227,7 @@ class DatabaseBuilder {
                     console.log("Answer from article query: " + res.statusCode);
                 })
             });
+            callback(true);
         }, (e) => {
             console.log(e);
             callback(false)
@@ -262,12 +262,12 @@ class DatabaseBuilder {
                                 let article_id = results[0].id;
                                 let add_article_keyword_query = 'insert ignore into article_keyword (article_id, keyword_id) values (' + article_id + ',' + keyword_id + ');';
                                 DatabaseHandler.query_db(add_article_keyword_query, () => {
-                                    callback(true);
                                 });
                             });
                         })
                     });
                 });
+                callback(true);
             }, (e) => {
                 console.log(e);
                 callback(false);
