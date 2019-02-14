@@ -1,0 +1,27 @@
+{
+  "name": "acamedia",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "@google-cloud/storage": "^2.4.2",
+    "async": "^2.6.1",
+    "body-parser": "^1.18.3",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "formidable": "^1.2.1",
+    "fs-extra": "^7.0.1",
+    "http-errors": "^1.6.3",
+    "keyword-extractor": "0.0.15",
+    "morgan": "^1.9.1",
+    "mysql": "latest",
+    "pdf-to-text": "0.0.7",
+    "pug": "2.0.0-beta11",
+    "request": "^2.88.0",
+    "sync-each": "^1.0.1",
+    "xml2js": "^0.4.19"
+  }
+}
