@@ -4,11 +4,11 @@
         <div class="container">
             <div>
                 <label>Researchers name:</label>
-                <input type="text" class="form-control" v-model="researchersName" placeholder="Researchers Name"><br>
+                <input v-on:keyup.enter="submit" type="text" class="form-control" v-model="researchersName" placeholder="Researchers Name"><br>
             </div>
             <div>
                 <label>Lab id:</label>
-                <input type="text" class="form-control" v-model="labId" placeholder="Lab Id"><br>
+                <input v-on:keyup.enter="submit" type="text" class="form-control" v-model="labId" placeholder="Lab Id"><br>
             </div>
         </div>
         <br>
@@ -33,8 +33,16 @@
             }
         },
         methods: {
+            checkifNull : function () {
+                return (this.labId == null || this.labId === "") ||
+                    (this.researchersName == null || this.researchersName === "");
+            },
             submit: function () {
-                if (this.labId == null || this.researchersName == null) return;
+                if (this.checkifNull()) {
+                    this.reply = "Please enter both required fields";
+                    this.replyStyle = "color: red";
+                    return;
+                }
                 this.reply = null;
                 this.querying = true;
                 axios.get('https://us-central1-t-solstice-224300.cloudfunctions.net/QueryPubmed', {
@@ -44,12 +52,12 @@
                     }
                 }).then((response) => {
                     this.querying = false;
-                    this.reply = response.status;
+                    this.reply = response.statusText;
                     this.replyStyle = "color: green"
                 }, (error) => {
                     this.querying = false;
                     console.log(error);
-                    this.reply = error.response.status;
+                    this.reply = error.response ? error.response.statusText : error;
                     this.replyStyle = "color: red"
                 })
             }

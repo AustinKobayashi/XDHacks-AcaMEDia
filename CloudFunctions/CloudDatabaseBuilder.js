@@ -23,19 +23,23 @@ class DatabaseBuilder {
                             resolve(0)
                         }else{
                             console.log("Rejected code from id: " + id + " With code: " + res.statusCode);
-                            reject(-1)
+                            reject(id)
                         }
                     })
                 }));
             });
             Promise.all(Promises).then(() => {
+                console.log("No errors found for some reason")
                 callback(0);
             }, (data) => {
-                let failcount = 20;
+                console.log("Data from reject: " + data.toString());
+                let failcount = 0;
                 for (item in data) {
+                    console.log("item: " + item);
                     failcount += item;
                 }
-                callback(failcount);
+                console.log("Fail couunt: " + failcount);
+                // callback(failcount);
             });
         }, (e) => {
             console.log("Rejected pubmed because of error: " + e);
@@ -45,18 +49,16 @@ class DatabaseBuilder {
     static get_and_insert_articles (id, lab_id, callback) {
         if(id) {
             this.get_pubmed_article(id).then((data) => {
+                console.log("Inserting article:" + data.article.title);
                 new Promise((resolve, reject) => {
                     let add_article_query = "insert ignore into article (title, publish_date) values (" +
                         "\'" + data.article.title + "\', " + "\'" + data.article.date.toJSON().slice(0, 10) + "\'" + ");";
                     DatabaseHandler.query_db(add_article_query, () => {
-                        console.log("Added article: " + data.article.title);
                         let get_article_id_query = "select id from article where title = " + "\'" + data.article.title + "\';";
                         DatabaseHandler.query_db(get_article_id_query, (results) => {
                             let article_id = results[0].id;
-                            console.log("Got article id2: " + article_id);
                             let add_lab_article = 'insert ignore into lab_article (lab_id, article_id) values (' + lab_id + ',' + article_id + ');';
                             DatabaseHandler.query_db(add_lab_article, () => {
-                                console.log("added lab article: " + data.article.title + " To lab: " + lab_id);
                                 resolve(true)
                             });
                         });
@@ -76,7 +78,6 @@ class DatabaseBuilder {
                                         let article_id = results[0].id;
                                         let add_article_keyword_query = 'insert ignore into article_keyword (article_id, keyword_id) values (' + article_id + ',' + keyword_id + ');';
                                         DatabaseHandler.query_db(add_article_keyword_query, () => {
-                                            //console.log("added keyword " + keyword + " to article in db: " + article_id);
                                             resolve()
                                         });
                                     });

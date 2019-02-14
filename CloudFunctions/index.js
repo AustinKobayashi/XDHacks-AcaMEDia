@@ -29,8 +29,6 @@ exports.QueryPubmed = (req, res) => {
 
     const query = req.query.term;
     const lab_id = parseInt(req.query.lab_id);
-    console.log("LAB ID = " + lab_id);
-    console.log("QUERY = " + req.query.term);
     if (query === null || lab_id == null) return res.send(500);
     DatabaseBuilder.query_pubmed(query, lab_id, (result) => {
         if (result > 0){
@@ -49,8 +47,6 @@ exports.InsertPubmedArticles = (req, res) => {
 
     let article_id = parseInt(req.query.id);
     let lab_id = parseInt(req.query.lab_id);
-    console.log("LAB ID = " + lab_id);
-    console.log("Article ID = " + article_id);
     if (lab_id == null || article_id == null) return res.send(500);
 
     DatabaseBuilder.get_and_insert_articles(article_id, lab_id,(result) => {
