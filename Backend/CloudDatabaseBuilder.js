@@ -220,56 +220,79 @@ class DatabaseBuilder {
     static query_pubmed (query_term, lab_id, callback) {
         const baseUrl = "https://us-central1-t-solstice-224300.cloudfunctions.net/InsertPubmedArticles";
         this.get_pubmed_ids(query_term).then((ids) => {
+            let Promises = [];
             ids.forEach((id) => {
-                let queryURL = baseUrl + "?id=" + id + "?labId=" + lab_id;
-                console.log(id);
-                https.get(queryURL, (res ) => {
-                    console.log("Answer from article query: " + res.statusCode);
-                })
+                Promises.push(new Promise((resolve, reject) => {
+                    let queryURL = baseUrl + "?id=" + id + "?labId=" + lab_id;
+                    https.get(queryURL, (res ) => {
+                        if (res.statusCode === 200){
+                            resolve()
+                        }else{
+                            reject()
+                        }
+                    })
+                }));
             });
-            callback(true);
+            Promise.all(Promises).then(() => {
+                callback(true);
+            }, () => {
+                callback(false);
+            });
         }, (e) => {
-            console.log(e);
+            console.log("Rejected pubmed because of error: " + e);
             callback(false)
         });
     }
     static get_and_insert_articles (id, lab_id, callback) {
         if(id) {
             this.get_pubmed_article(id).then((data) => {
-                let add_article_query = "insert ignore into article (title, publish_date) values (" +
-                    "\'" + data.article.title + "\', " + "\'" + data.article.date.toJSON().slice(0, 10) + "\'" + ");";
-                DatabaseHandler.query_db(add_article_query, () => {
-                });
-
-                let get_article_id_query = "select id from article where title = " + "\'" + data.article.title + "\';";
-                DatabaseHandler.query_db(get_article_id_query, (results) => {
-                    let article_id = results[0].id;
-                    let add_lab_article = 'insert ignore into lab_article (lab_id, article_id) values (' + lab_id + ',' + article_id + ');';
-                    DatabaseHandler.query_db(add_lab_article, () => {
-                        console.log("Added lab article");
-                    });
-                });
-
-                data.keywords.forEach((keyword) => {
-                    let add_keyword_query = "insert ignore into keyword (word) values (" + "\'" + keyword + "\');";
-                    DatabaseHandler.query_db(add_keyword_query, () => {
-                        let get_keyword_id_query = "select id from keyword where word = '" + keyword + "\';";
-                        DatabaseHandler.query_db(get_keyword_id_query, (results) => {
-                            let keyword_id = results[0].id;
-
-                            let get_article_id_query = "select id from article where title = " + "\'" + data.article.title + "\';";
-                            DatabaseHandler.query_db(get_article_id_query, (results) => {
-                                let article_id = results[0].id;
-                                let add_article_keyword_query = 'insert ignore into article_keyword (article_id, keyword_id) values (' + article_id + ',' + keyword_id + ');';
-                                DatabaseHandler.query_db(add_article_keyword_query, () => {
-                                });
+                let ParentPromises = [];
+                ParentPromises.push(new Promise((resolve, reject) => {
+                    let add_article_query = "insert ignore into article (title, publish_date) values (" +
+                        "\'" + data.article.title + "\', " + "\'" + data.article.date.toJSON().slice(0, 10) + "\'" + ");";
+                    DatabaseHandler.query_db(add_article_query, () => {
+                        let get_article_id_query = "select id from article where title = " + "\'" + data.article.title + "\';";
+                        DatabaseHandler.query_db(get_article_id_query, (results) => {
+                            let article_id = results[0].id;
+                            let add_lab_article = 'insert ignore into lab_article (lab_id, article_id) values (' + lab_id + ',' + article_id + ');';
+                            DatabaseHandler.query_db(add_lab_article, () => {
+                                resolve(true)
                             });
-                        })
+                        });
                     });
-                });
-                callback(true);
-            }, (e) => {
-                console.log(e);
+                }));
+                ParentPromises.push(new Promise ( (resolve, reject) => {
+                    let Promises = [];
+                    data.keywords.forEach((keyword) => {
+                        const promise = new Promise((resolve, reject) => {
+                            let add_keyword_query = "insert ignore into keyword (word) values (" + "\'" + keyword + "\');";
+                            DatabaseHandler.query_db(add_keyword_query, () => {
+                                let get_keyword_id_query = "select id from keyword where word = '" + keyword + "\';";
+                                DatabaseHandler.query_db(get_keyword_id_query, (results) => {
+                                    let keyword_id = results[0].id;
+
+                                    let get_article_id_query = "select id from article where title = " + "\'" + data.article.title + "\';";
+                                    DatabaseHandler.query_db(get_article_id_query, (results) => {
+                                        let article_id = results[0].id;
+                                        let add_article_keyword_query = 'insert ignore into article_keyword (article_id, keyword_id) values (' + article_id + ',' + keyword_id + ');';
+                                        DatabaseHandler.query_db(add_article_keyword_query, () => {
+                                            resolve()
+                                        });
+                                    });
+                                })
+                            })
+                        });
+                        Promises.push(promise);
+                    });
+                    Promise.all(Promises).then(() => {
+                        resolve();
+                    })
+                }));
+                Promise.all(ParentPromises).then(() => {
+                    callback(true);
+                })
+                }, (e) => {
+                console.log("Failed to get article from pubmed because of: " + e);
                 callback(false);
             });
         }
